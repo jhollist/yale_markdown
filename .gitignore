@@ -24,3 +24,4 @@ vignettes/*.pdf
 *.knit.md
 .Rproj.user
 yale_markdown.Rproj
+yale_markdown.html

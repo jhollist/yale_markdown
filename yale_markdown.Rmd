@@ -8,6 +8,8 @@ output:
     toc_float: true
 editor_options: 
   chunk_output_type: console
+params:
+  year: 2000
 ---
 
 ```{r setup, include=FALSE}
@@ -69,11 +71,11 @@ datatable(gap_data)
 
 ## Visualize Data
 
-Next step is to visualize the data.  Let's look at the association between average yearly emissions and average yearly gross domestic product since 2000 for the 10 countries with the highest GDP.
+Next step is to visualize the data.  Let's look at the association between average yearly emissions and average yearly gross domestic product since `r params$year` for the 10 countries with the highest GDP.
 
 ```{r plot_it, warning=FALSE, message=FALSE}
 emiss_gdp_gg <- gap_data %>%
-  filter(year >= 2000) %>%
+  filter(year >= params$year) %>%
   group_by(country) %>%
   summarize(mean_co2 = round(mean(co2_emiss),1),
             mean_gdp = round(mean(gdp),1)) %>%
@@ -82,7 +84,8 @@ emiss_gdp_gg <- gap_data %>%
   geom_point(aes(group = country),size = 2) +
   geom_smooth(method = "lm") +
   theme_classic() +
-  labs(x = "Mean Gross Domestic Product",
+  labs(title = paste("GDP and C02 since", params$year),
+       x = "Mean Gross Domestic Product",
        y = "Mean Carbon Dioxide Emissions")
 ggplotly(emiss_gdp_gg)
 ```
