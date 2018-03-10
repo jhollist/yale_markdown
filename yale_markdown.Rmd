@@ -1,9 +1,11 @@
 ---
 title: "Gross Domestic Product and Carbon Dioxide Emissions"
-date: "2018-03-09"
-output: 
+editor_options:
+  chunk_output_type: console
+date: '2018-03-09'
+output:
   html_document:
-    toc: true
+    toc: yes
     toc_depth: 3
     toc_float: true
 editor_options: 
@@ -22,6 +24,8 @@ for(i in pkgs){
   }
 }
 x<-lapply(pkgs, library, character.only = TRUE)
+#install.packages("lubridate")
+#library(lubridate)
 ```
 
 # Purpose
@@ -38,7 +42,7 @@ The data we need is in two separate Gapminder datasets so let's load them.
 
 First we can get the dataset that we have saved as a `.csv` in this repository.
 
-```{r read_csv, message=FALSE}
+```{r read_csv, message=FALSE, echo = FALSE}
 gap_gdp <- read_csv("gapminder_gdp.csv")
 ```
 
